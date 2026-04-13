@@ -6,7 +6,7 @@ ASMFLAGS = -f elf32
 CFLAGS = -m32 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -Wall -Wextra -c
 LDFLAGS = -m elf_i386 -T linker.ld
 
-OBJS = boot.o kernel_entry.o kernel.o screen.o string.o
+OBJS = bin/boot.o bin/kernel_entry.o bin/kernel.o bin/screen.o bin/string.o
 
 all: kernel.elf
 

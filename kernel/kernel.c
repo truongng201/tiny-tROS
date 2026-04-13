@@ -1,5 +1,8 @@
 #include "kernel.h"
 
+#include "drivers/screen.h"
+
 void kernel_main() {
-    printf("Hello, World! Welcome to tiny-tROS kernel.\n");
+    screen_initialize();
+    screen_writestring("Hello, World! Welcome to tiny-tROS kernel.\n");
 }

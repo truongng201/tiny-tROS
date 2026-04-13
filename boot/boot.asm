@@ -1,5 +1,7 @@
 global loader                   ; the entry symbol for ELF
+extern kernel_main
 
+; Multiboot v1 header for GRUB
 MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
 FLAGS        equ 0x0            ; multiboot flags
 CHECKSUM     equ -MAGIC_NUMBER  ; calculate the checksum
@@ -12,6 +14,18 @@ align 4                         ; the code must be 4 byte aligned
     dd CHECKSUM                 ; and the checksum
 
 loader:                         ; the loader label (defined as entry point in linker script)
-    mov eax, 0xCAFEBABE         ; place the number 0xCAFEBABE in the register eax
-.loop:
-    jmp .loop                   ; loop forever
+    ; Set up a stack before entering C
+    mov esp, stack_top
+    ; Call C kernel entry
+    call kernel_main
+
+.hang:
+    cli
+    hlt
+    jmp .hang
+
+section .bss
+align 16
+stack_bottom:
+    resb 16384
+stack_top:
