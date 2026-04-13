@@ -15,7 +15,7 @@ align 4                         ; the header must be 4-byte aligned
 
 section .text                   ; start of the text (code) section
 
-_start:                        ; the loader label (defined as entry point in linker script)
+_start:                        ; the _start label (defined as entry point in linker script)
     ; Set up a stack before entering C
     mov esp, stack_top
     ; Call C kernel entry
