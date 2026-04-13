@@ -2,6 +2,16 @@
 
 Tiny kernel built for larger OS. This project I am doing for fun to learn how to build a kernel and OS.
 
+
+## Structure
+
+- boot: loading the kernel and jumping to it
+- kernel: the kernel itself, which will be loaded by the bootloader
+- lib: the library used by the kernel, which will be linked to the kernel
+- drivers: the drivers used by the kernel, which will be linked to the kernel
+- iso: the iso image used to boot the kernel, which will be created by the bootloader
+- linker.ld: the linker script used to link the kernel
+
 ## Requirements
 
 - [QEMU](https://www.qemu.org/) used as emulator to run the kernel
