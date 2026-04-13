@@ -14,10 +14,11 @@ Tiny kernel built for larger OS. This project I am doing for fun to learn how to
 
 ## Requirements
 
-- [QEMU](https://www.qemu.org/) used as emulator to run the kernel
-- [GNU toolchain for x86_64](https://gcc.gnu.org/) used as compiler for kernel
-- [NASM](https://www.nasm.us/) used as assembler for bootloader
-- [GRUB](https://www.gnu.org/software/grub/) used as bootloader
+- [QEMU](https://www.qemu.org/) used as emulator to run the kernel: `sudo apt install qemu-system qemu-utils`
+- [i686-elf-gcc](https://gcc.gnu.org/) used as cross compiler for kernel: `sudo apt install gcc-multilib`
+- [GNU Binutils](https://www.gnu.org/software/binutils/) used as linker for kernel: `sudo apt install binutils-multilib`
+- [NASM](https://www.nasm.us/) used as assembler for bootloader: `sudo apt install nasm`
+- [GRUB](https://www.gnu.org/software/grub/) used as bootloader: `sudo apt install grub-pc-bin xorriso`
 
 ## References
 

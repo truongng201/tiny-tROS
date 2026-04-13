@@ -1,26 +1,37 @@
-ENTRY(loader)                /* the name of the entry label */
+ENTRY(_start)
 
-SECTIONS {
-    . = 0x00100000;          /* the code should be loaded at 1 MB */
+SECTIONS
+{
+	. = 2M;
 
-    .text ALIGN (0x1000) :   /* align at 4 KB */
-    {
-        *(.text)             /* all text sections from all files */
-    }
+	/* First put the multiboot header, as it is required to be put very early
+	   in the image or the bootloader won't recognize the file format.
+	   Next we'll put the .text section. */
+	.text BLOCK(4K) : ALIGN(4K)
+	{
+		*(.multiboot)
+		*(.text)
+	}
 
-    .rodata ALIGN (0x1000) : /* align at 4 KB */
-    {
-        *(.rodata*)          /* all read-only data sections from all files */
-    }
+	/* Read-only data. */
+	.rodata BLOCK(4K) : ALIGN(4K)
+	{
+		*(.rodata)
+	}
 
-    .data ALIGN (0x1000) :   /* align at 4 KB */
-    {
-        *(.data)             /* all data sections from all files */
-    }
+	/* Read-write data (initialized) */
+	.data BLOCK(4K) : ALIGN(4K)
+	{
+		*(.data)
+	}
 
-    .bss ALIGN (0x1000) :    /* align at 4 KB */
-    {
-        *(COMMON)            /* all COMMON sections from all files */
-        *(.bss)              /* all bss sections from all files */
-    }
+	/* Read-write data (uninitialized) and stack */
+	.bss BLOCK(4K) : ALIGN(4K)
+	{
+		*(COMMON)
+		*(.bss)
+	}
+
+	/* The compiler may produce other sections, by default it will put them in
+	   a segment with the same name. Simply add stuff here as needed. */
 }
