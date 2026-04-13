@@ -6,29 +6,36 @@ ASMFLAGS = -f elf32
 CFLAGS = -m32 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -Wall -Wextra -c
 LDFLAGS = -m elf_i386 -T linker.ld
 
-OBJS = bin/boot.o bin/kernel_entry.o bin/kernel.o bin/screen.o bin/string.o
+BOOT_DIR = boot
+KERNEL_DIR = kernel
+DRIVER_DIR = drivers
+LIB_DIR = lib
+
+OBJS_DIR = bin
+
+OBJS = $(OBJS_DIR)/boot.o $(OBJS_DIR)/kernel_entry.o $(OBJS_DIR)/kernel.o $(OBJS_DIR)/screen.o $(OBJS_DIR)/string.o
 
 all: kernel.elf
 
-boot.o: boot.asm
-	$(ASM) $(ASMFLAGS) boot.asm -o boot.o
+boot.o: $(BOOT_DIR)/boot.asm
+	$(ASM) $(ASMFLAGS) $< -o ${OBJS_DIR}/boot.o
 
-kernel_entry.o: kernel_entry.asm
-	$(ASM) $(ASMFLAGS) kernel_entry.asm -o kernel_entry.o
+kernel_entry.o: $(KERNEL_DIR)/kernel_entry.asm
+	$(ASM) $(ASMFLAGS) $< -o ${OBJS_DIR}/kernel_entry.o
 
-kernel.o: kernel.c
-	$(CC) $(CFLAGS) kernel.c -o kernel.o
+kernel.o: $(KERNEL_DIR)/kernel.c
+	$(CC) $(CFLAGS) $< -o ${OBJS_DIR}/kernel.o
 
-screen.o: screen.c screen.h
-	$(CC) $(CFLAGS) screen.c -o screen.o
+screen.o: $(DRIVER_DIR)/screen.c $(DRIVER_DIR)/screen.h
+	$(CC) $(CFLAGS) $< -o ${OBJS_DIR}/screen.o
 
-string.o: string.c string.h
-	$(CC) $(CFLAGS) string.c -o string.o
+string.o: $(LIB_DIR)/string.c $(LIB_DIR)/string.h
+	$(CC) $(CFLAGS) $< -o ${OBJS_DIR}/string.o
 
 kernel.elf: $(OBJS) linker.ld
 	$(LD) $(LDFLAGS) $(OBJS) -o kernel.elf
 
 clean:
-	rm -f *.o *.elf
+	rm -f ${OBJS_DIR}/*.o ${OBJS_DIR}/*.elf
 
 .PHONY: all clean
