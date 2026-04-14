@@ -16,8 +16,7 @@ Tiny kernel built for larger OS. This project I am doing for fun to learn how to
 
 - [QEMU](https://www.qemu.org/) used as emulator to run the kernel: `sudo apt install qemu-system qemu-utils`
 - [i686-elf-gcc](https://gcc.gnu.org/) used as cross compiler for kernel: `sudo apt install gcc-multilib`
-- [GNU Binutils](https://www.gnu.org/software/binutils/) used as linker for kernel: `sudo apt install binutils-multilib`
-- [NASM](https://www.nasm.us/) used as assembler for bootloader: `sudo apt install nasm`
+- [GNU Binutils](https://www.gnu.org/software/binutils/) used as assembler/linker for boot code and kernel linking: `sudo apt install binutils-multilib`
 - [GRUB](https://www.gnu.org/software/grub/) used as bootloader: `sudo apt install grub-pc-bin xorriso`
 
 ## References
