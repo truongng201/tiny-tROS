@@ -22,6 +22,9 @@ Tiny kernel built for larger OS. This project I am doing for fun to learn how to
 ## Documents
 
 - If you have several struggle with the installing, development, and understanding of the code. I already put the entire "help" in the [docs](./docs) folder, you can check it out if you have any question about the project.
+- Here is the overview output with 2 modes: screen and serial output mode
+![tiny-tROS vga](./docs/images/vga_mode.png)
+![tiny-tROS serial](./docs/images/serial_mode.png)
 
 ## References
 
