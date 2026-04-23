@@ -14,7 +14,7 @@ First, you have to read the wiki osdev, and understand certain concepts
 - What is an ISO image ?
 - What is QEMU ?
 
-## And more ,,,
+## And more
 
 Then, just copy the code from that wiki ask AI to explain it to you, and have fun with it.
 Just kidding well not really, I mean I don't actuaclly understand it either :D

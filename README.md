@@ -2,7 +2,6 @@
 
 Tiny kernel built for larger OS. This project I am doing for fun to learn how to build a kernel and OS.
 
-
 ## Structure
 
 - boot: loading the kernel and jumping to it
